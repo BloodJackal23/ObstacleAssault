@@ -29,4 +29,19 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	float MoveSpeed = 3.0f;
+
+	UPROPERTY(EditAnywhere)
+	float MoveTime = 3.0f;
+
+	UPROPERTY(EditAnywhere)
+	float WaitTime = 1.5f;
+
+	UPROPERTY(EditAnywhere)
+	int32 DirectionSign = 1;
+
+private:
+	bool bIsMoving = false;
+	float timer = 0.0f;
+
+	bool TimerFinished(float totalTime, float deltaTime);
 };

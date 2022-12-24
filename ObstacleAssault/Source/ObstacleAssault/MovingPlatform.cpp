@@ -21,5 +21,27 @@ void AMovingPlatform::BeginPlay()
 void AMovingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	SetActorLocation(GetActorLocation() + MoveDirection.GetSafeNormal() * MoveSpeed * DeltaTime);
+	FVector CurrentLocation = GetActorLocation();
+	if(bIsMoving)
+	{
+		bIsMoving = !TimerFinished(MoveTime, DeltaTime);
+		SetActorLocation(CurrentLocation + MoveDirection.GetSafeNormal() * DirectionSign * MoveSpeed * DeltaTime);
+	}
+	else
+	{
+		bIsMoving = TimerFinished(MoveTime, DeltaTime);
+		if(bIsMoving)
+			DirectionSign = -DirectionSign;
+	}
+}
+
+bool AMovingPlatform::TimerFinished(float totalTime, float deltaTime)
+{
+    if(timer < totalTime)
+	{
+		timer += deltaTime;
+		return false;
+	}
+	timer = 0;
+	return true;
 }
