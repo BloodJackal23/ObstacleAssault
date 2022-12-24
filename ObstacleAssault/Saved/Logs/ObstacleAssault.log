@@ -1865,3 +1865,8 @@ LogConfig: Set CVar [[r.Shadow.DetectVertexShaderLayerAtRuntime:1]]
 [2022.12.24-10.11.47:467][333]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called. InstanceID=15
 [2022.12.24-10.11.47:475][333]LogUObjectHash: Compacting FUObjectHashTables data took   0.55ms
 [2022.12.24-10.11.47:550][335]LogPlayLevel: Display: Destroying online subsystem :Context_15
+[2022.12.24-10.56.26:851][723]LogLiveCoding: Display: Starting Live Coding compile.
+[2022.12.24-10.56.30:672][735]LogLiveCoding: Display:    Creating library E:\Game dev projects\Unreal projects\ObstacleAssault\ObstacleAssault\Binaries\Win64\UnrealEditor-ObstacleAssault.patch_6.lib and object E:\Game dev projects\Unreal projects\ObstacleAssault\ObstacleAssault\Binaries\Win64\UnrealEditor-ObstacleAssault.patch_6.exp
+[2022.12.24-10.56.30:987][736]LogUObjectHash: Compacting FUObjectHashTables data took   0.52ms
+[2022.12.24-10.56.31:195][737]Display: Reload/Re-instancing Complete: 1 class unchanged
+[2022.12.24-10.56.31:195][737]LogLiveCoding: Display: Live coding succeeded
