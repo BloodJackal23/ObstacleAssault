@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Math/Vector.h"
 #include "MovingPlatform.generated.h"
 
 UCLASS()
@@ -24,5 +25,8 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(EditAnywhere)
-	FVector MyVector = FVector(1, 2, 3);
+	FVector MoveDirection = FVector(0, 1, 0);
+
+	UPROPERTY(EditAnywhere)
+	float MoveSpeed = 3.0f;
 };
