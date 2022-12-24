@@ -28,7 +28,7 @@ public:
 	FVector MoveDirection = FVector(0, 1, 0);
 
 	UPROPERTY(EditAnywhere)
-	float MoveSpeed = 3.0f;
+	float MoveSpeed = 300.0f;
 
 	UPROPERTY(EditAnywhere)
 	float TravelTime = 3.0f;
@@ -39,12 +39,15 @@ public:
 	UPROPERTY(EditAnywhere)
 	bool bStartMoving = true;
 
+	UPROPERTY(EditAnywhere)
+	int32 StartDirectionSign = 1;
+
 	UPROPERTY(VisibleAnywhere, Category = "Debug")
 	float DistanceFromStartPosition;
 
 private:
 	bool bIsMoving = false;
-	int32 DirectionSign = 1;
+	int32 directionSign = 1;
 	float timer = 0.0f;
 
 	bool TimerFinished(float totalTime, float deltaTime);

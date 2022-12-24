@@ -15,6 +15,7 @@ void AMovingPlatform::BeginPlay()
 {
 	Super::BeginPlay();
 	bIsMoving = bStartMoving;
+	directionSign = StartDirectionSign;
 	startLocation = GetActorLocation();
 }
 
@@ -26,9 +27,9 @@ void AMovingPlatform::Tick(float DeltaTime)
 	if(bIsMoving)
 	{
 		bIsMoving = !TimerFinished(TravelTime, DeltaTime);
-		SetActorLocation(CurrentLocation + MoveDirection.GetSafeNormal() * DirectionSign * MoveSpeed * DeltaTime);
+		SetActorLocation(CurrentLocation + MoveDirection.GetSafeNormal() * directionSign * MoveSpeed * DeltaTime);
 		if(!bIsMoving)
-			DirectionSign = -DirectionSign;
+			directionSign = -directionSign;
 	}
 	else
 	{
