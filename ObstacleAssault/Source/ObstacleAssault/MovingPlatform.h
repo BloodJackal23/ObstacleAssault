@@ -31,17 +31,23 @@ public:
 	float MoveSpeed = 3.0f;
 
 	UPROPERTY(EditAnywhere)
-	float MoveTime = 3.0f;
+	float TravelTime = 3.0f;
 
 	UPROPERTY(EditAnywhere)
 	float WaitTime = 1.5f;
 
 	UPROPERTY(EditAnywhere)
-	int32 DirectionSign = 1;
+	bool bStartMoving = true;
+
+	UPROPERTY(VisibleAnywhere, Category = "Debug")
+	float DistanceFromStartPosition;
 
 private:
 	bool bIsMoving = false;
+	int32 DirectionSign = 1;
 	float timer = 0.0f;
 
 	bool TimerFinished(float totalTime, float deltaTime);
+
+	FVector startLocation;
 };

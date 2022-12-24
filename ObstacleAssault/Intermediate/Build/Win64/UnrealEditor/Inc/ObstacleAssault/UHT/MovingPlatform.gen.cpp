@@ -38,17 +38,22 @@ void EmptyLinkFunctionForGeneratedCodeMovingPlatform() {}
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_MoveSpeed;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_MoveTime_MetaData[];
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_TravelTime_MetaData[];
 #endif
-		static const UECodeGen_Private::FFloatPropertyParams NewProp_MoveTime;
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_TravelTime;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_WaitTime_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_WaitTime;
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_DirectionSign_MetaData[];
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_bStartMoving_MetaData[];
 #endif
-		static const UECodeGen_Private::FIntPropertyParams NewProp_DirectionSign;
+		static void NewProp_bStartMoving_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bStartMoving;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_DistanceFromStartPosition_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_DistanceFromStartPosition;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -78,12 +83,12 @@ void EmptyLinkFunctionForGeneratedCodeMovingPlatform() {}
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMovingPlatform_Statics::NewProp_MoveSpeed = { "MoveSpeed", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AMovingPlatform, MoveSpeed), METADATA_PARAMS(Z_Construct_UClass_AMovingPlatform_Statics::NewProp_MoveSpeed_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMovingPlatform_Statics::NewProp_MoveSpeed_MetaData)) };
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMovingPlatform_Statics::NewProp_MoveTime_MetaData[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMovingPlatform_Statics::NewProp_TravelTime_MetaData[] = {
 		{ "Category", "MovingPlatform" },
 		{ "ModuleRelativePath", "MovingPlatform.h" },
 	};
 #endif
-	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMovingPlatform_Statics::NewProp_MoveTime = { "MoveTime", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AMovingPlatform, MoveTime), METADATA_PARAMS(Z_Construct_UClass_AMovingPlatform_Statics::NewProp_MoveTime_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMovingPlatform_Statics::NewProp_MoveTime_MetaData)) };
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMovingPlatform_Statics::NewProp_TravelTime = { "TravelTime", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AMovingPlatform, TravelTime), METADATA_PARAMS(Z_Construct_UClass_AMovingPlatform_Statics::NewProp_TravelTime_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMovingPlatform_Statics::NewProp_TravelTime_MetaData)) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMovingPlatform_Statics::NewProp_WaitTime_MetaData[] = {
 		{ "Category", "MovingPlatform" },
@@ -92,18 +97,30 @@ void EmptyLinkFunctionForGeneratedCodeMovingPlatform() {}
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMovingPlatform_Statics::NewProp_WaitTime = { "WaitTime", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AMovingPlatform, WaitTime), METADATA_PARAMS(Z_Construct_UClass_AMovingPlatform_Statics::NewProp_WaitTime_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMovingPlatform_Statics::NewProp_WaitTime_MetaData)) };
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMovingPlatform_Statics::NewProp_DirectionSign_MetaData[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMovingPlatform_Statics::NewProp_bStartMoving_MetaData[] = {
 		{ "Category", "MovingPlatform" },
 		{ "ModuleRelativePath", "MovingPlatform.h" },
 	};
 #endif
-	const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AMovingPlatform_Statics::NewProp_DirectionSign = { "DirectionSign", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AMovingPlatform, DirectionSign), METADATA_PARAMS(Z_Construct_UClass_AMovingPlatform_Statics::NewProp_DirectionSign_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMovingPlatform_Statics::NewProp_DirectionSign_MetaData)) };
+	void Z_Construct_UClass_AMovingPlatform_Statics::NewProp_bStartMoving_SetBit(void* Obj)
+	{
+		((AMovingPlatform*)Obj)->bStartMoving = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AMovingPlatform_Statics::NewProp_bStartMoving = { "bStartMoving", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(AMovingPlatform), &Z_Construct_UClass_AMovingPlatform_Statics::NewProp_bStartMoving_SetBit, METADATA_PARAMS(Z_Construct_UClass_AMovingPlatform_Statics::NewProp_bStartMoving_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMovingPlatform_Statics::NewProp_bStartMoving_MetaData)) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AMovingPlatform_Statics::NewProp_DistanceFromStartPosition_MetaData[] = {
+		{ "Category", "Debug" },
+		{ "ModuleRelativePath", "MovingPlatform.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMovingPlatform_Statics::NewProp_DistanceFromStartPosition = { "DistanceFromStartPosition", nullptr, (EPropertyFlags)0x0010000000020001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(AMovingPlatform, DistanceFromStartPosition), METADATA_PARAMS(Z_Construct_UClass_AMovingPlatform_Statics::NewProp_DistanceFromStartPosition_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AMovingPlatform_Statics::NewProp_DistanceFromStartPosition_MetaData)) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMovingPlatform_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMovingPlatform_Statics::NewProp_MoveDirection,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMovingPlatform_Statics::NewProp_MoveSpeed,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMovingPlatform_Statics::NewProp_MoveTime,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMovingPlatform_Statics::NewProp_TravelTime,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMovingPlatform_Statics::NewProp_WaitTime,
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMovingPlatform_Statics::NewProp_DirectionSign,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMovingPlatform_Statics::NewProp_bStartMoving,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMovingPlatform_Statics::NewProp_DistanceFromStartPosition,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AMovingPlatform_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AMovingPlatform>::IsAbstract,
@@ -142,9 +159,9 @@ void EmptyLinkFunctionForGeneratedCodeMovingPlatform() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ObstacleAssault_Source_ObstacleAssault_MovingPlatform_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AMovingPlatform, AMovingPlatform::StaticClass, TEXT("AMovingPlatform"), &Z_Registration_Info_UClass_AMovingPlatform, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMovingPlatform), 736329620U) },
+		{ Z_Construct_UClass_AMovingPlatform, AMovingPlatform::StaticClass, TEXT("AMovingPlatform"), &Z_Registration_Info_UClass_AMovingPlatform, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMovingPlatform), 326260687U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ObstacleAssault_Source_ObstacleAssault_MovingPlatform_h_4264198658(TEXT("/Script/ObstacleAssault"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_ObstacleAssault_Source_ObstacleAssault_MovingPlatform_h_365810921(TEXT("/Script/ObstacleAssault"),
 		Z_CompiledInDeferFile_FID_ObstacleAssault_Source_ObstacleAssault_MovingPlatform_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_ObstacleAssault_Source_ObstacleAssault_MovingPlatform_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
