@@ -17,6 +17,10 @@ void AMovingPlatform::BeginPlay()
 	bIsMoving = bStartMoving;
 	directionSign = StartDirectionSign;
 	startLocation = GetActorLocation();
+
+	UE_LOG(LogTemp, Display, TEXT("This display message was brought to you by %s"), *GetActorNameOrLabel());
+	UE_LOG(LogTemp, Warning, TEXT("This is a warning message!"));
+	UE_LOG(LogTemp, Error, TEXT("This is an error message!"));
 }
 
 // Called every frame
