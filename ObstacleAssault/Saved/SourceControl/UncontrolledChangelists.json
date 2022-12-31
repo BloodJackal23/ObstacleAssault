@@ -8,7 +8,13 @@
 				"E:/Game dev projects/Unreal projects/ObstacleAssault/ObstacleAssault/Content/LearningKit_Games/Maps/LearningKit_Games_Showcase.umap",
 				"E:/Game dev projects/Unreal projects/ObstacleAssault/ObstacleAssault/Content/Game/Maps/MainLevel.umap",
 				"E:/Game dev projects/Unreal projects/ObstacleAssault/ObstacleAssault/Content/SCK_Casual01/Blueprints/ThirdPersonCharacter.uasset",
-				"E:/Game dev projects/Unreal projects/ObstacleAssault/ObstacleAssault/Content/Game/Blueprints/BP_ThirdPersonCharacter.uasset"
+				"E:/Game dev projects/Unreal projects/ObstacleAssault/ObstacleAssault/Content/Game/Blueprints/BP_ThirdPersonCharacter.uasset",
+				"E:/Game dev projects/Unreal projects/ObstacleAssault/ObstacleAssault/Content/Game/Blueprints/BP_MovingPlatform.uasset",
+				"E:/Game dev projects/Unreal projects/ObstacleAssault/ObstacleAssault/Content/Game/Blueprints/BP_Pusher.uasset",
+				"E:/Game dev projects/Unreal projects/ObstacleAssault/ObstacleAssault/Content/Game/Blueprints/FloatingPlatform.uasset",
+				"E:/Game dev projects/Unreal projects/ObstacleAssault/ObstacleAssault/Content/Game/Blueprints/BP_ObstacleAssaultGameMode.uasset",
+				"E:/Game dev projects/Unreal projects/ObstacleAssault/ObstacleAssault/Content/BP_MovingPlatform.uasset",
+				"E:/Game dev projects/Unreal projects/ObstacleAssault/ObstacleAssault/Content/Game/BP_MovingPlatform.uasset"
 			]
 		}
 	]
