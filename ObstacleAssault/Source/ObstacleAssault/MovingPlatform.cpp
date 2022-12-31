@@ -8,6 +8,7 @@ AMovingPlatform::AMovingPlatform()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	timer = 0;
 }
 
 // Called when the game starts or when spawned
@@ -17,6 +18,8 @@ void AMovingPlatform::BeginPlay()
 	bIsMoving = bStartMoving;
 	directionSign = StartDirectionSign;
 	startLocation = GetActorLocation();
+	translationDistance = MoveSpeed * TravelTime;
+	endLocation = GetActorLocation() + MoveDirection.GetSafeNormal() * directionSign * translationDistance;
 
 	UE_LOG(LogTemp, Display, TEXT("This display message was brought to you by %s"), *GetActorNameOrLabel());
 	UE_LOG(LogTemp, Warning, TEXT("This is a warning message!"));
@@ -27,28 +30,64 @@ void AMovingPlatform::BeginPlay()
 void AMovingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	FVector CurrentLocation = GetActorLocation();
-	if(bIsMoving)
-	{
-		bIsMoving = !TimerFinished(TravelTime, DeltaTime);
-		SetActorLocation(CurrentLocation + MoveDirection.GetSafeNormal() * directionSign * MoveSpeed * DeltaTime);
-		if(!bIsMoving)
-			directionSign = -directionSign;
-	}
-	else
-	{
-		bIsMoving = TimerFinished(TravelTime, DeltaTime);
-	}
-	DistanceFromStartPosition = FVector::Dist(startLocation, CurrentLocation);
+	MovePlatform(DeltaTime);
+	RotatePlatform(DeltaTime);
 }
 
-bool AMovingPlatform::TimerFinished(float totalTime, float deltaTime)
+void AMovingPlatform::MovePlatform(float deltaTime)
 {
-    if(timer < totalTime)
+	FVector CurrentLocation = GetActorLocation();
+
+	if (!bIsMoving) 
 	{
-		timer += deltaTime;
-		return false;
+		if (!TimerFinished(timer, WaitTime)) 
+		{
+			timer += deltaTime;
+			return;
+		}
+		bIsMoving = true;
+		timer = 0;
+		return;
 	}
+
+	SetLerpLocations();
+	if(!TimerFinished(timer, TravelTime))
+	{
+		SetActorLocation(CurrentLocation + MoveDirection.GetSafeNormal() * directionSign * MoveSpeed * deltaTime);
+		timer += deltaTime;
+		return;
+	}
+	SetActorLocation(endLocation);
+	bIsMoving = false;
+	directionSign = -directionSign;
+	
 	timer = 0;
-	return true;
+
+	distanceFromStartPosition = FVector::Dist(startLocation, CurrentLocation);
+}
+
+void AMovingPlatform::SetLerpLocations()
+{
+	startLocation = GetActorLocation();
+	endLocation = startLocation + MoveDirection.GetSafeNormal() * directionSign * TravelTime;
+}
+
+void AMovingPlatform::RotatePlatform(float deltaTime)
+{
+	FVector eulerRot = GetActorRotation().Euler();
+	eulerRot += AddedRotationEuler * deltaTime;
+	SetActorRotation(FRotator::MakeFromEuler(eulerRot));
+}
+
+bool AMovingPlatform::TimerFinished(float currentTime, float totalTime) const
+{
+	return !(currentTime < totalTime);
+}
+
+FVector AMovingPlatform::LerpVector(FVector from, FVector to, float delta) const
+{
+	float x = (from.X + (to.X - from.X) * delta);
+	float y = (from.Y + (to.Y - from.Y) * delta);
+	float z = (from.Z + (to.Z - from.Z) * delta);
+	return FVector(x, y, z);
 }

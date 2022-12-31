@@ -38,19 +38,31 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	bool bStartMoving = true;
+	UPROPERTY(EditAnywhere)
+	FVector AddedRotationEuler;
 
 	UPROPERTY(EditAnywhere)
 	int32 StartDirectionSign = 1;
 
-	UPROPERTY(VisibleAnywhere, Category = "Debug")
-	float DistanceFromStartPosition;
+	
 
 private:
 	bool bIsMoving = false;
 	int32 directionSign = 1;
 	float timer = 0.0f;
+	UPROPERTY(VisibleAnywhere, Category = "Debug")
+	float translationDistance;
 
-	bool TimerFinished(float totalTime, float deltaTime);
-
+	UPROPERTY(VisibleAnywhere, Category = "Debug")
+	float distanceFromStartPosition;
 	FVector startLocation;
+	UPROPERTY(VisibleAnywhere, Category = "Debug")
+	FVector endLocation;
+	
+
+	void MovePlatform(float deltaTime);
+	void RotatePlatform(float deltaTime);
+	void SetLerpLocations();
+	bool TimerFinished(float currentTime, float totalTime) const;	
+	FVector LerpVector(FVector from, FVector to, float delta) const;
 };
